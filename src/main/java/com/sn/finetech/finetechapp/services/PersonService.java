@@ -8,7 +8,6 @@ import java.util.List;
 public interface PersonService {
 
     List<Person> findAll();
-
     Person createPerson(Person person);
     public List<Person> findByFirstName(String firstName);
     public List<Person> findByFirstNameAndLastName(String firstName, String lastName);
