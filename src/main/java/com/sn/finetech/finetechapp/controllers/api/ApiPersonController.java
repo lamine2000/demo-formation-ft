@@ -20,7 +20,7 @@ public class ApiPersonController {
      * - PATCH /api/v1/person/{id}
      * - PUT /api/v1/person/{id}
      * - DELETE /api/v1/person/{id}
-     * - GET /api/v1/person/search?lastName="Mane"
+     * - GET /api/v1/person/searchByLastName?lastName="Mane"
      */
 
     PersonService personService;
@@ -48,16 +48,31 @@ public class ApiPersonController {
         return personService.findById(id);
     }
 
-    @GetMapping("/search")
-    public Person findByName(@RequestParam(name="lastName") String lastName) {
+    @GetMapping("/searchByLastName")
+    public List<Person> findByLastName(@RequestParam(name="lastName") String lastName) {
         return personService.findByLastName(lastName);
     }
 
-    //TODO find person by first name
+    @GetMapping("/searchByFistName")
+    public List<Person> findByFistName(@RequestParam(name="firstName") String firstName) {
+        return personService.findByFirstName(firstName);
+    }
 
-    //TODO find person by first name and last name
+    @GetMapping("/searchByFistNameAndLastName")
+    public List<Person> findByFisrtNameAndLastName(
+            @RequestParam(name="firstName") String firstName,
+            @RequestParam(name="lastName") String lastName) {
+        return personService.findByFirstNameAndLastName(firstName, lastName);
+    }
 
-    //TODO delete person by id
+    @DeleteMapping("/delete/{id}")
+    public void deleteById(@PathVariable Long id) {
+        personService.deletePerson(id);
+    }
 
-    //TODO update person
+    @PutMapping("/update/{id}")
+    public void update(@PathVariable Long id, @RequestBody Person person) {
+        person.setId(id);
+        personService.update(person);
+    }
 }

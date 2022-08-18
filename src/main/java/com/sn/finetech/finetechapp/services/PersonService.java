@@ -14,10 +14,9 @@ public interface PersonService {
     public List<Person> findByBirthdayGreaterThan(LocalDate birthday);
     public List<Person> findByQuery(String firstName, String lastName);
     public List<Person> findByDepartmentCodeContainsI();
-
     Person findById(Long id);
-
     void deletePerson(Long id);
+    List<Person> findByLastName(String lastName);
 
-    Person findByLastName(String lastName);
+    void update(Person person);
 }
