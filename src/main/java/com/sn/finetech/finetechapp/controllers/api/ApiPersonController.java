@@ -53,7 +53,7 @@ public class ApiPersonController {
         return personService.findByLastName(lastName);
     }
 
-    @GetMapping("/searchByFistName")
+    @GetMapping("/searchByFirstName")
     public List<Person> findByFistName(@RequestParam(name="firstName") String firstName) {
         return personService.findByFirstName(firstName);
     }

@@ -1,5 +1,7 @@
 package com.sn.finetech.finetechapp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
@@ -28,6 +30,7 @@ public class Person {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "department_id", nullable = true)
+    @JsonIgnore
     private Department department;
 
     @Transient
