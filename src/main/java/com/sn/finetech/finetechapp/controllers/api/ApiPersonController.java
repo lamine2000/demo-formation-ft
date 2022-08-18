@@ -1,6 +1,5 @@
 package com.sn.finetech.finetechapp.controllers.api;
 
-
 import com.sn.finetech.finetechapp.model.Person;
 import com.sn.finetech.finetechapp.services.PersonService;
 import org.springframework.http.HttpStatus;
@@ -23,7 +22,7 @@ public class ApiPersonController {
      * - GET /api/v1/person/searchByLastName?lastName="Mane"
      */
 
-    PersonService personService;
+    private final PersonService personService;
 
     public ApiPersonController(PersonService personService) {
         this.personService = personService;
@@ -39,7 +38,14 @@ public class ApiPersonController {
     // find all persons
     @GetMapping
     public ResponseEntity<List<Person>> findAll() {
-        return ResponseEntity.status(HttpStatus.OK).body(personService.findAll());
+
+        List<Person> persons = personService.findAll();
+        /*if(persons.isEmpty()) {
+            return ResponseEntity
+                    .status(HttpStatus.NO_CONTENT)
+                    .body(new ApiException(HttpStatus.NO_CONTENT, "No persons found", ));
+        }*/
+        return ResponseEntity.status(HttpStatus.OK).body(persons);
     }
 
     // find person by id
