@@ -55,20 +55,23 @@ public class ApiPersonController {
     }
 
     @GetMapping("/searchByLastName")
-    public List<Person> findByLastName(@RequestParam(name="lastName") String lastName) {
-        return personService.findByLastName(lastName);
+    public ResponseEntity<List<Person>> findByLastName(@RequestParam(name="lastName") String lastName) {
+        List<Person> persons = personService.findByLastName(lastName);
+        return ResponseEntity.status(HttpStatus.OK).body(persons);
     }
 
     @GetMapping("/searchByFirstName")
-    public List<Person> findByFistName(@RequestParam(name="firstName") String firstName) {
-        return personService.findByFirstName(firstName);
+    public ResponseEntity<List<Person>> findByFistName(@RequestParam(name="firstName") String firstName) {
+        List<Person> persons = personService.findByFirstName(firstName);
+        return ResponseEntity.status(HttpStatus.OK).body(persons);
     }
 
     @GetMapping("/searchByFistNameAndLastName")
-    public List<Person> findByFisrtNameAndLastName(
+    public ResponseEntity<List<Person>> findByFisrtNameAndLastName(
             @RequestParam(name="firstName") String firstName,
             @RequestParam(name="lastName") String lastName) {
-        return personService.findByFirstNameAndLastName(firstName, lastName);
+        List<Person> persons = personService.findByFirstNameAndLastName(firstName, lastName);
+        return ResponseEntity.status(HttpStatus.OK).body(persons);
     }
 
     @DeleteMapping("/delete/{id}")

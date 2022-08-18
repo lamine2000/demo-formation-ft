@@ -1,6 +1,5 @@
 package com.sn.finetech.finetechapp.exception;
 
-import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.http.HttpStatus;
 
 public class ApiException extends RuntimeException {
